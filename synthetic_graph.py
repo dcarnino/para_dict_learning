@@ -3,11 +3,11 @@ import numpy as np
 import networkx as nx
 
 ##### Classes #####
-### Class describing a synthetic signal
-class synthetic_signal:
+### Class describing a synthetic graph
+class synthetic_graph:
 
-    ### initialize signal on a graph randomly embedded in unit square
-    def __init__(self, nb_nodes, ):
+    ### initialize a graph randomly embedded in unit square
+    def __init__(self, nb_nodes, theta, kappa):
         self.graph = nx.Graph()
         self.nodes = range(nb_nodes)
         self.coordinates = np.random.sample(size=(nb_nodes,2))
