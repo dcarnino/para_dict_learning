@@ -1,15 +1,19 @@
 ##### Libraries #####
-
+import numpy as np
+import random as rd
+##### Modules #####
+from initial_data import data
+from parameters import parameters
+from polynomial_dictionary_learning import polynomial_dictionary_learning
+##### Seeds #####
+np.random.seed(1)
+rd.seed(1)
 
 ##### Main #####
-
 ### Parameters ###
-nb_nodes = 100 #N
-nb_subdicos = 4 #S
-nb_atoms = nb_nodes * nb_subdicos #J
-deg_subdicos = [20]*nb_subdicos #K
-sparsity = 4 #T0
-spectral_cst = 1 #c
-epsilon1 = 0.02
-epsilon2 = 0.02 #we assume both epsilons have the same value
-mu_tradeoff = 10**(-4) #polynomial regularizer parameter
+params = parameters()
+### Data importation ###
+signal = data('testdata.mat',max(params.deg_subdicos))
+### Polynomial Dictionary Learning ###
+dictionary, coef_matrix, alpha, result = polynomial_dictionary_learning(signal, params)
+print dictionary
