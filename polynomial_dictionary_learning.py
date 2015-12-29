@@ -14,6 +14,9 @@ def polynomial_dictionary_learning(data, params):
     # initialize dictionary
     if params.init_method == 'random_kernels':
         dictionary = initialize_dictionary(data, params)
+    # plot intial kernels
+    if params.plot_kernels:
+        pass#plot_kernels(data.init_alpha, data, params)
     # main loop of algorithm
     for iter in range(params.nb_iter):
         # sparse coding step (OMP)
@@ -28,7 +31,7 @@ def polynomial_dictionary_learning(data, params):
         update_dictionary(dictionary, alpha, data, params)
         # show progress
         if iter>0:
-            current_error = np.sqrt(np.sum((data.train_signals-dictionary.dot(coef_matrix))**2)/data.train_signals.size)
+            current_error = np.sqrt(np.sum(np.power((data.train_signals-dictionary.dot(coef_matrix)),2))/data.train_signals.size)
             total_error.append(current_error)
     return dictionary, coef_matrix, alpha, result
 
@@ -48,6 +51,6 @@ def update_dictionary(dictionary, alpha, data, params):
     for s in range(params.nb_subdicos):
         Ds = np.zeros(params.nb_nodes)
         for k in range(params.deg_subdicos[s]):
-            Ds = Ds + alpha[s+r]*params.laplacian_powers[s]
+            Ds = Ds + alpha[s+r]*data.laplacian_powers[s]
         r = sum(params.deg_subdicos[:s+1]) + s+1
         dictionary[:,s*params.nb_nodes:(s+1)*params.nb_nodes] = Ds

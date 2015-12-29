@@ -16,4 +16,4 @@ params = parameters()
 signal = data('testdata.mat',max(params.deg_subdicos))
 ### Polynomial Dictionary Learning ###
 dictionary, coef_matrix, alpha, result = polynomial_dictionary_learning(signal, params)
-print dictionary
+print alpha

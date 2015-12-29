@@ -3,7 +3,7 @@ class parameters:
         self.nb_nodes = 100 #N
         self.nb_subdicos = 4 #S
         self.nb_atoms = self.nb_nodes * self.nb_subdicos #J
-        self.deg_subdicos = [20]*self.nb_subdicos #K
+        self.deg_subdicos = [20+1]*self.nb_subdicos #K
         self.sparsity = 4 #T0
         self.spectral_cst = 1 #c
         self.epsilon1 = 0.02
@@ -12,5 +12,5 @@ class parameters:
 
         self.init_method = 'random_kernels'
         self.verbose = True
-        self.nb_iter = 25
+        self.nb_iter = 5
         self.plot_kernels = True

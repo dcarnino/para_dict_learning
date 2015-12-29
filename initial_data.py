@@ -39,7 +39,7 @@ class data:
         half_pow_deg_mat = scipy.linalg.sqrtm(np.linalg.inv(deg_mat))
         raw_laplacian_mat = deg_mat - self.weight_mat
         self.laplacian_mat = half_pow_deg_mat.dot(raw_laplacian_mat.dot(half_pow_deg_mat))
-        eigvals, eigvects = scipy.linalg.eig(self.laplacian_mat)
+        eigvals, eigvects = np.linalg.eig(self.laplacian_mat)
         self.eigval_laplacian_mat = np.diag(eigvals)
         self.eigvect_laplacian_mat = eigvects
         self.sorted_laplacian_eigvals = np.sort(eigvals)[::-1]
@@ -48,7 +48,7 @@ class data:
     def get_power_laplacian(self, max_power):
         self.laplacian_powers = [np.linalg.matrix_power(self.laplacian_mat, k) for k in range(max_power)]
         self.eigval_powers = [self.sorted_laplacian_eigvals**k for k in range(max_power)]
-        self.eigval_power_mat = np.array(self.eigval_powers)
+        self.eigval_power_mat = np.array(self.eigval_powers).T
 
 ##### Main #####
 if __name__ == "__main__":
