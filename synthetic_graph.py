@@ -17,7 +17,7 @@ class synthetic_graph:
                     if self.distance(inode, jnode) <= kappa:
                         self.graph.add_edge(inode, jnode, weight=self.weight_func(inode, jnode, theta))
         assert (nx.is_connected(self.graph)), "Graph carrying signal is not connected !"
-        self.embed_signal()
+        self.weight_mat = np.array(nx.adjacency_matrix(self.graph).todense())
 
     ### compute and return euclidean distance between inode and jnode
     def distance(self, inode, jnode):
@@ -28,6 +28,7 @@ class synthetic_graph:
     ### compute and return weight of the edge between inode and jnode
     def weight_func(self, inode, jnode, theta):
         return np.exp(-(self.distance(inode,jnode)**2)/(2.*theta**2))
+
 
 
 ##### Main #####

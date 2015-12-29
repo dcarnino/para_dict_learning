@@ -62,8 +62,8 @@ def coefficient_update_interior_point(coef_matrix, data, params):
     G_matd = matrix(G_mat, tc='d')
     h_matd = matrix(h_mat, tc='d')
 
-    ## run interior point method cvxopt solver
-    sol = solvers.qp(P_matd,q_matd,G_matd,h_matd,solver='mosek')
+    ## run interior point method cvxopt solver ('mosek' solver can be used if installed)
+    sol = solvers.qp(P_matd,q_matd,G_matd,h_matd)#,solver='mosek')
     alpha = sol['x']
 
     return alpha

@@ -1,5 +1,7 @@
 class parameters:
     def __init__(self):
+        self.file_name = 'testdata.mat'
+        #self.file_name = ''
         self.nb_nodes = 100 #N
         self.nb_subdicos = 4 #S
         self.nb_atoms = self.nb_nodes * self.nb_subdicos #J
@@ -14,3 +16,12 @@ class parameters:
         self.verbose = True
         self.nb_iter = 5
         self.plot_kernels = True
+
+        self.theta = 0.9
+        self.kappa = 0.5
+        self.deg_kernels = 6
+        self.mean_alpha = 0
+        self.sd_alpha = 0.2
+        self.nb_train_signals = 600
+        self.nb_test_signals = 600
+        self.nb_total_signals = self.nb_train_signals + self.nb_test_signals

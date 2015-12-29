@@ -13,7 +13,6 @@ rd.seed(1)
 ### Parameters ###
 params = parameters()
 ### Data importation ###
-signal = data('testdata.mat',max(params.deg_subdicos))
+signal = data(params, params.file_name)
 ### Polynomial Dictionary Learning ###
 dictionary, coef_matrix, alpha, result = polynomial_dictionary_learning(signal, params)
-print alpha
